@@ -1,23 +1,39 @@
-# Node.js & Passport Login
+# Places App
 
-This is a user login and registration app using Node.js, Express, Passport, Mongoose, EJS and some other packages.
+This is a user app for searching and storing your favourite tourist places with information e.g Address,name,telephone number
 
-### Version: 2.0.0
+### Version: 1.0.
 
 ### Usage
 
-```sh
-$ npm install
 ```
-
-```sh
 $ npm start
 # Or run with Nodemon
 $ npm run dev
 
-# Visit http://localhost:5000
+# Visit http://localhost:3000
 ```
 
 ### MongoDB
 
 Open "config/keys.js" and add your MongoDB URI, local or Atlas
+
+### Mongoose
+
+For object mapping to monogDB
+
+### Passport JS
+
+For user auth using local strategy
+
+### bcrypt js
+
+For password encryption
+
+### Axios
+
+For making rest api calls
+
+### ejs
+
+For Templating views
