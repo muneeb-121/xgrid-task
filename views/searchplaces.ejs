@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/4/journal/bootstrap.min.css"
+    />
+    <title>Places App</title>
+  </head>
+  <body>
+<div class="row mt-5">
+        <a href="/users/dashboard" class="btn btn-secondary">Dashboard</a>
+    <form class="form-inline offset-md-2 my-2 my-lg-0" action="/users/search" method="POST">
+        <div class="form-group">
+            <select name="searchengine" class="custom-select">
+                <option selected="selected"></option>
+                <option value="Google" selected="Google">Google</option>
+                <option value="Bing">Bing</option>
+            </select>
+            </div>
+        <input name="searchstring" class="form-control mr-sm-2" type="text" placeholder="Search" required>
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div>
+
+<div class="row mt-4">
+        <%if (searchengine=='Google') { %>
+        <% searchedplace.forEach((place) => {
+            %>
+                    <div class="card card-body text-center col-md-4">
+                        <form action="/users/addplacegoogle" method="POST">
+                            <input type="text" name="name" value="<%=place.name %>" hidden>
+                            <input type="text" name="address" value="<%=place.formatted_address %>" hidden>
+                            <input type="text" name="rating" value="<%=place.rating %>" hidden>
+                            <input type="text" name="numberofratings" value="<%=place.user_ratings_total %>" hidden>
+                            <input type="text" name="type" value="<%=place.types[0]+' , '+place.types[1] %>" hidden>
+                            <input type="text" name="lng" value="<%=place.geometry.location.lng %>" hidden>
+                            <input type="text" name="lat" value="<%=place.geometry.location.lat %>" hidden>
+                            <input type="text" name="placeId" value="<%=place.place_id %>" hidden>
+                            <p>Name : <%= place.name %></p>
+                            <p>Address : <%= place.formatted_address %></p>
+                            <p>Rating : <%= place.rating %></p>
+                            <p>No. of Ratings : <%= place.user_ratings_total %></p>
+                            <p>Type : <%= place.types[0] +" , "+place.types[1] %></p>
+                            <button type="submit" class="btn btn-primary btn-block mb-2">Add to Favourite</button>
+                        </form>
+                    </div>
+                    
+            <%
+        })%>
+        <% } %>
+        <%if (searchengine=='Bing') { %>
+            <% searchedplace.forEach((place) => {
+                %>
+                <div class="card card-body text-center col-md-4">
+                        <form action="/users/addplacebing" method="POST">
+                            <input type="text" name="name" value="<%=place.name %>" hidden>
+                            <input type="text" name="address" value="<%= place.Address.formattedAddress %>" hidden>
+                            <input type="text" name="country" value="<%= place.Address.countryRegion %>" hidden>
+                            <input type="text" name="phnumber" value="<%= place.PhoneNumber %>" hidden>
+                            <input type="text" name="type" value="<%= place.entityType %><" hidden>
+                            <input type="text" name="lng" value="<%=place.geocodePoints[0].coordinates[0] %>">
+                            <input type="text" name="lat" value="<%=place.geocodePoints[0].coordinates[1] %>">
+                            <p>Name : <%= place.name %></p>
+                            <p>Country : <%= place.Address.countryRegion %></p>
+                            <p>Address : <%= place.Address.formattedAddress %></p>
+                            <p>Phone# : <%= place.PhoneNumber %></p>
+                            <p>Type : <%= place.entityType %></p>
+                            <button type="submit" class="btn btn-primary btn-block mb-2">Add to Favourite</button>
+                        </form>
+                    </div>
+                        
+                <%
+            })%>
+            <% } %>
+</div>
+<script
+src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"
+></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+crossorigin="anonymous"
+></script>
+<script
+src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+crossorigin="anonymous"
+></script>
+</body>
+
+</html>
