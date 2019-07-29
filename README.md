@@ -20,7 +20,7 @@ Open "config/keys.js" and add your MongoDB URI, local or Atlas
 
 ### Mongoose
 
-For object mapping to monogDB
+For object mapping to mongoDB
 
 ### Passport JS
 
