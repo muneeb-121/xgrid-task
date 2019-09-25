@@ -186,13 +186,13 @@ router.post('/viewmap',(req,res)=>{
 
 function googleApiCall(searchstring){
 
-  const apiKey = 'AIzaSyDJZLTVaLA0aZ9ewMDxtA8CAesgoTxuZko';
+  const apiKey = 'YOUR API KEY';
   return axios.get('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input='+searchstring+'&inputtype=textquery&fields=formatted_address,place_id,rating,user_ratings_total,types,photos,name,rating,geometry&key='+apiKey);
 };
 
 function bingApiCall(searchstring){
 
-  const apiKey = 'AtqmShNHp65Kqg9AUichy6YO-jx_iDWjHAjypTng0lzkmb8dY2hRghewD1nsjd3Z ';
+  const apiKey = 'YOUR API KEY';
   return axios.get('https://dev.virtualearth.net/REST/v1/LocalSearch/?query='+searchstring+'&userLocation=37.0902,-95.7129&key='+apiKey);
 }
 
